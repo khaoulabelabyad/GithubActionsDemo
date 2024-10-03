@@ -8,6 +8,12 @@ jobs:
       - name: Check code
         uses: actions/checkout@v2
 
+      - name: Download Terraform state
+        uses: actions/download-artifact@v2
+        with: 
+          name: terraform-state
+          path: ./terraform
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with: 
@@ -26,3 +32,9 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var 'azure_credentials=${{ secrets.AZURE_CREDENTIALS_VALUES }}'
+
+      - name: Upload Terrzform state
+        uses: actions/upload-artifact@v2
+        with:
+          name: terraform-state
+          path: ./terraform/terraform.state
