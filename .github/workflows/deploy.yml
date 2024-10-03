@@ -1,8 +1,5 @@
 name: 'Terraform VM Workflow'
 'on': push
-branches:
-    - main
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
