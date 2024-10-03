@@ -1,6 +1,6 @@
 name: 'Terraform VM Workflow'
 'on': push
-  branches:
+branches:
     - main
 
 jobs:
