@@ -9,13 +9,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: List files in the working directory
-        run: ls -R
+        run: 
+          mkdir -p ./terraform
+          ls -R
 
       - name: Download Terraform state
         uses: actions/download-artifact@v4
         with: 
           name: terraform-state
-          path: ./
+          path: ./terraform
         continue-on-error: true
 
       - name: Setup Terraform
@@ -44,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v4        
         with:
           name: terraform-state
-          path: ./terraform.tfstate
+          path: .terraform/terraform.tfstate
