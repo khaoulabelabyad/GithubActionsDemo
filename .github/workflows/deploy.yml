@@ -8,6 +8,10 @@ jobs:
       - name: Check code
         uses: actions/checkout@v2
 
+      - name: Create directory "terraform"
+        run: 
+          mkdir -p ./terraform
+
       - name: List files in the working directory
         run: 
           mkdir -p ./terraform
