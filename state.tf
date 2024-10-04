@@ -14,9 +14,9 @@ resource "azurerm_storage_container" "state_container" {
 
 terraform{
     backend "azurerm" {
-      resource_group_name  = azurerm_resource_group.rg.name
-      storage_account_name = azurerm_storage_account.state.name
-      container_name       = azurerm_storage_container.state_container.name
+      resource_group_name  = "github-actions-resources"
+      storage_account_name = "gitactionsstatekbtest"
+      container_name       = "github-actions-state"
       key                  = "vm_provisioning/terraform.tfstate"
   }
 }
