@@ -36,6 +36,9 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform format
+        run: terraform fmt
+
       - name: Terraform Plan
         run: terraform plan -var 'azure_credentials=${{ secrets.AZURE_CREDENTIALS_VALUES }}'
 
