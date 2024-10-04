@@ -18,5 +18,9 @@ terraform{
       storage_account_name = "gitactionsstatekbtest"
       container_name       = "github-actions-state"
       key                  = "vm_provisioning/terraform.tfstate"
+      subscription_id = jsondecode(var.azure_credentials).subscriptionId
+      client_id       = jsondecode(var.azure_credentials).clientId
+      client_secret   = jsondecode(var.azure_credentials).clientSecret
+      tenant_id       = jsondecode(var.azure_credentials).tenantId
   }
 }
