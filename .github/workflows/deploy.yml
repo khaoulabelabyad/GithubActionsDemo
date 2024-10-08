@@ -42,16 +42,17 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS_VALUES }}'
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config="storage_account_name=gitactionsstatekbtest"  -backend-config="container_name=github-actions-state"   -backend-config="key=vm_provisioning/terraform.tfstate" -backend-config="resource_group_name=github-actions-resources" -backend-config="secrets\sp.tfvars"
 
       - name: Terraform format
         run: terraform fmt
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -out="plan.out"  -var-file="secrets/sp.tfvars"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve plan.out
+
 
       - name: List all files in working directory
         run: ls -R
