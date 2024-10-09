@@ -48,10 +48,10 @@ jobs:
         run: terraform fmt
 
       - name: Terraform Plan
-        run: terraform plan -out="plan.out"  -var-file="secrets/sp.tfvars"
+        run: terraform plan -var-file="secrets/sp.tfvars"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve plan.out
+        run: terraform apply -auto-approve
 
 
       - name: List all files in working directory
