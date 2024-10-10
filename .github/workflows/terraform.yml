@@ -1,5 +1,4 @@
 name: 'Terraform test Workflow'
-'on': push
 jobs:
   terraform:
     runs-on: ubuntu-latest
