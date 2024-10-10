@@ -1,4 +1,4 @@
-name: 'Terraform test Workflow'
+name: Terraform test Workflow
 on: 
   workflow-dispatch:
 jobs:

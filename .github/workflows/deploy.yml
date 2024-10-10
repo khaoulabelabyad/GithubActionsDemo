@@ -1,4 +1,4 @@
-name: 'Terraform VM Workflow'
+name: Terraform VM Workflow
 'on': push
 jobs:
   terraform:
