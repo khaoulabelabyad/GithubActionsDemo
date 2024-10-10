@@ -1,6 +1,6 @@
 name: Terraform test Workflow
 on: 
-  workflow-dispatch:
+  workflow_dispatch:
 jobs:
   terraform:
     runs-on: ubuntu-latest
