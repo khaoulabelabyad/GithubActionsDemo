@@ -24,6 +24,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+        
       - name: Display repository files
         run: ls -lR ./
 
