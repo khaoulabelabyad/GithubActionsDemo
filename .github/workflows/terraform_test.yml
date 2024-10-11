@@ -14,29 +14,16 @@ jobs:
 
     steps:
       - name: Check code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with: 
-          terraform_version: 1.0.0
-      
       - name: Azure Login
         uses: azure/login@v1
         with: 
           creds: '${{ secrets.AZURE_CREDENTIALS_VALUES }}'
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        uses: hashicorp/terraform-github-actions/init@0.4.0
-        
-      - name: Terraform format
-        run: terraform fmt
-
-      - name: Terraform Plan
-        run: terraform plan  -var-file='secrets/sp.tfvars'
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="secrets/sp.tfvars"
-
-
-
+        id: init
+        run: terraform init
