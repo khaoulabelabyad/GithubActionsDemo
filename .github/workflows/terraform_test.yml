@@ -27,7 +27,7 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS_VALUES }}'
 
       - name: Terraform Init
-        use: hashicorp/terraform-github-actions/init@0.4.0
+        uses: hashicorp/terraform-github-actions/init@0.4.0
         
       - name: Terraform format
         run: terraform fmt
