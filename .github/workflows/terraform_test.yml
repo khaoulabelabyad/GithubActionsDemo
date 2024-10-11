@@ -25,7 +25,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Display repository files
-        run: ls -la ./
+        run: ls -la -R ./
 
       - name: Terraform Init
         id: init
