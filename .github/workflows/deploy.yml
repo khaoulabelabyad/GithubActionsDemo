@@ -1,5 +1,6 @@
 name: Terraform VM Workflow
-'on': push
+'on': 
+  workflow_dispatch:
 jobs:
   terraform:
     runs-on: ubuntu-latest

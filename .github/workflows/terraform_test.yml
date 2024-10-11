@@ -5,6 +5,13 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+
     steps:
       - name: Check code
         uses: actions/checkout@v2
@@ -20,13 +27,13 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS_VALUES }}'
 
       - name: Terraform Init
-        run: terraform init -backend-config="storage_account_name=gitactionsstatekbtest"  -backend-config="container_name=github-actions-state"   -backend-config="key=vm_provisioning/terraform.tfstate" -backend-config="resource_group_name=github-actions-resources" -backend-config="secrets\sp.tfvars"
-
+        use: hashicorp/terraform-github-actions/init@0.4.0
+        
       - name: Terraform format
         run: terraform fmt
 
       - name: Terraform Plan
-        run: terraform plan  -var-file="secrets/sp.tfvars"
+        run: terraform plan  -var-file='secrets/sp.tfvars'
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var-file="secrets/sp.tfvars"
