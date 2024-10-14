@@ -17,10 +17,16 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-
       - name: Display repository files
         run: ls -lR ./
 
       - name: Terraform Init
-        id: init
-        run: terraform init  -backend-config="storage_account_name=gitactionsstatekbtest"  -backend-config="container_name=github-actions-state"   -backend-config="key=vm_provisioning/terraform.tfstate" -backend-config="resource_group_name=github-actions-resources"
+        run: terraform init \
+          -backend-config="storage_account_name=gitactionsstatekbtest" \
+          -backend-config="container_name=github-actions-state" \
+          -backend-config="key=vm_provisioning/terraform.tfstate" \
+          -backend-config="resource_group_name=github-actions-resources" \
+          -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+          -backend-config="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+          -backend-config="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
