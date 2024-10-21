@@ -21,15 +21,19 @@ jobs:
         run: ls -lR ./
 
       - name: Terraform Init
-        run: terraform init \
-          -backend-config="storage_account_name=gitactionsstatekbtest" \
-          -backend-config="container_name=github-actions-state" \
-          -backend-config="key=vm_provisioning/terraform.tfstate" \
-          -backend-config="resource_group_name=github-actions-resources" \
-          -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
-          -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
-          -backend-config="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
-          -backend-config="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
+        working-directory: ./
+        run: terraform init
+
+      # - name: Terraform Init
+      #   run: terraform init \
+      #     -backend-config="storage_account_name=gitactionsstatekbtest" \
+      #     -backend-config="container_name=github-actions-state" \
+      #     -backend-config="key=vm_provisioning/terraform.tfstate" \
+      #     -backend-config="resource_group_name=github-actions-resources" \
+      #     -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+      #     -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+      #     -backend-config="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+      #     -backend-config="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
 
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
